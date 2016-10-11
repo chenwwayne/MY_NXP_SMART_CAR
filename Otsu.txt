@@ -1,0 +1,167 @@
+u8 nList[280]={0};
+u8 otsu(u8 *pSrc)
+{
+    u8 j=0,tr=0,num=0,cnt=0;
+    u16 i=0;
+    u32 avfor=0,avback=0;    //u32  long int    
+    u16 cnts=0;
+    u32 total=0,total_low=0,total_high=0,g=0,max=0;
+    //清空直方图
+    for(i=0;i<280;i++)
+    {
+       nList[i]=0;       
+    }
+    //计算直方图
+   // p=&ADdata[50][0];
+    for(j=0;j<140;j++)
+        //for(j=0;j<128;j++)
+        {   
+            num=*(pSrc+j);//获取灰度值
+            //nList[num]++;//直方图统计图像所有像素点
+            nList[num]+=1;	//统计每一个灰度级的像素的个数	
+            total+=num;//total计算图像的灰度值总和
+        }
+
+    for(i=0;i<280;i++)
+    {
+        cnt=nList[i];//当前灰度值的计数数量
+        if(cnt==0)   continue;
+        total_low+=cnt*i;//计算灰度值从0到当前值的像素点灰度值的总和
+        cnts+=cnt;//计算灰度值从0到当前值的像素点数目的总和
+        if(cnts==140)  break;//统计完所有像素点，之后的灰度值已经没有任何像素点符合，计算完毕，退出
+
+        total_high=total-total_low;//背景灰度=灰度总和-前景灰度(还没有归一化)
+        avfor=(int)(total_low/cnts);//前景归一化
+        avback=(int)(total_high/(140-cnts));//背景归一化  
+        g=(avback-avfor)*(avback-avfor)*(cnts*140-cnts*cnts)/(140*140)    ;//计算方差     
+        if(max<g)
+        {
+            max=g;
+            tr=i;//方差最大的灰度值即为大津阈值
+        }
+       // if(i==80)
+         // i=80;
+    }  
+    return tr;
+}
+
+
+//跟平均值一样
+void trends_threshold()
+{
+    unsigned int i,j,zmax=0,zmin=255,zbmax=0,zbmin=255,zamax=0,zamin=255,t0,t1,za,zb;
+    for(i=0;i<DATALINE;i++)
+    {
+        for(j=0;j<DATACOUNT;j++)
+        {
+            if(ADdata[i][j]>zmax)
+            {
+                zmax=ADdata[i][j];
+            }
+            if(ADdata[i][j]<zmin)
+            {
+                zmin=ADdata[i][j];
+            }
+        }
+    }
+    t0=(zmax+zmin)/2;
+    if(Threshold!=t0)
+    {
+        while(1)
+        {
+            for(i=0;i<DATALINE;i++)
+            {
+                for(j=0;j<DATACOUNT;j++)
+                {
+                    if(ADdata[i][j]>=t0)
+                    {
+                        if(ADdata[i][j]>zamax)
+                        {
+                            zamax=ADdata[i][j];
+                        }
+                        if(ADdata[i][j]<zamin)
+                        {
+                            zamin=ADdata[i][j];
+                        }
+                    }
+                    else
+                    {
+                        if(ADdata[i][j]>zbmax)
+                        {
+                            zbmax=ADdata[i][j];
+                        }
+                        if(ADdata[i][j]<zbmin)
+                        {
+                            zbmin=ADdata[i][j];
+                        }
+                    }
+                }
+            }
+            za=(zamax+zamin)/2;
+            zb=(zbmax+zbmin)/2;
+            t1=(za+zb)/2;
+            if(t1==t0)
+            break;
+            else
+            t0=t1;
+        }
+        Threshold=t1;
+    }
+
+}
+
+/************************************************************************************************************
+*
+*  函数名称：OTSU_threshold
+*  功能说明：经典大津算法 动态阈值
+*  修改时间：2016-8-31
+*  备    注：
+*  	Otsu实现思路
+*	1. 计算0~255各灰阶对应的像素个数，保存至一个数组中，该数组下标是灰度值，保存内容是当前灰度值对应像素数
+*	2. 计算背景图像的平均灰度、背景图像像素数所占比例
+*	3. 计算前景图像的平均灰度、前景图像像素数所占比例
+*	4. 遍历0~255各灰阶，计算并寻找类间方差极大值
+**************************************************************************************************************/
+#define Gourd 256
+uint8 OTSU_threshold(uint8 *pic,uint16 num)
+{
+   uint16 i=0;
+   uint16 Histogram[Gourd];//直方图histogram
+   for (i=0;i<Gourd;i++)
+	   Histogram[i]=0;//数组清零
+
+   for (i=0;i<num;i++)
+   {
+       Histogram[(int)pic[i]*Gourd/256]++;//遍历每个像素，计算每个灰度级的像素个数和。
+   }
+
+  float pt[Gourd],w[Gourd],u[Gourd],o[Gourd],Ut;
+
+  pt[0]=(float)Histogram[0]/num;
+  w[0]=pt[0];
+  u[0]=w[0];
+
+  for(i=1;i<Gourd;i++)
+  {
+    pt[i]=(float)Histogram[i]/num; //灰度级为i的像素个数占总像素的比例
+    w[i]=w[i-1]+pt[i];//进行pt[i]的累加。对图像像素数所占比例进行累加
+    u[i]=u[i-1]+i*pt[i];//进行i*pt[i]的累加，从而计算出平均灰度（每个灰度级*每个灰度级所占的比例） 
+  };
+  Ut=u[Gourd-1];//整幅图像平均灰度
+
+  for(i=0;i<Gourd;i++)
+  {
+    o[i]=(1-pt[i])*(u[i]*u[i]/w[i]+(u[i]-Ut)*(u[i]-Ut)/(1-w[i]));//方差
+  };
+
+  int maxi=0;
+  float maxo=0;
+
+  for(i=0;i<Gourd;i++)
+  {
+    if(o[i]!=0x7FC0000)
+    if(o[i]>maxo){maxo=o[i];maxi=i;}//遍历0~255各灰阶，计算并寻找类间方差极大值，当找到时，i为对应类间方差的灰度值
+
+  }
+  return maxi*256/Gourd;
+}

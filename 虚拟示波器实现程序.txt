@@ -1,0 +1,25 @@
+void vcan_sendware(uint8 *wareaddr, uint32 waresize)
+{
+    #define CMD_WARE     3
+    uint8 cmdf[2] = {CMD_WARE, ~CMD_WARE};    //串口调试 使用的前命令
+    uint8 cmdr[2] = {~CMD_WARE, CMD_WARE};    //串口调试 使用的后命令
+
+    uart_putbuff(VCAN_PORT, cmdf, sizeof(cmdf));    //先发送前命令
+    uart_putbuff(VCAN_PORT, wareaddr, waresize);    //发送数据
+    uart_putbuff(VCAN_PORT, cmdr, sizeof(cmdr));    //发送后命令
+
+}
+
+例子：
+         send_buff[0] = *speed_left_real;
+         send_buff[1] = *speed_right_real;
+         send_buff[2] = speed_expect[0];
+         send_buff[3] = speed_expect[1];
+         send_buff[4] = speed_left_duty;
+         send_buff[5] = speed_rignt_duty;
+         
+         vcan_sendware((uint8 *)send_buff,sizeof(send_buff));//sizeof(send_buff)，
+  
+
+                            1.发送的数组一定要强制转化成8位。。（即uint8）
+                            2. 数组的大小按字节来算。比如发送的数组大小有4个，数组中的每一个都为32位，每个为4字节，则总共有16个字节。则sizeof(send_buff)=4*4=16

@@ -1,0 +1,13 @@
+/*时间测试函数*/
+//测试中断时间初始化
+//    pit_time_start(PIT1);//计数初始化
+//    PIT_TCTRL(PIT1) &= ~ PIT_TCTRL_TEN_MASK;//关闭计数
+
+//中断时间测试 开始
+//   PIT_TCTRL(PIT1)  |=  PIT_TCTRL_TEN_MASK;  //使能 PITn定时器
+
+//中断测试 结束
+//   time_vlaue = pit_time_get_us(PIT1);//((~0) - PIT_CVAL(PIT1));//中断时间测试
+//   PIT_TCTRL(PIT1) &= ~ PIT_TCTRL_TEN_MASK;//关闭计数
+//
+/*时间测试函数*/

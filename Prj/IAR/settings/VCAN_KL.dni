@@ -1,0 +1,159 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=1691128823
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=0
+[JLinkDriver]
+CStepIntDis=_ 0
+TraceBufferSize=0x00010000
+TraceStallIfFIFOFull=0x00000000
+TracePortSize=0x00000004
+[SWOTraceHWSettings]
+OverrideDefaultClocks=0
+CpuClock=72000000
+ClockAutoDetect=0
+ClockWanted=2000000
+JtagSpeed=2000000
+Prescaler=36
+TimeStampPrescIndex=0
+TimeStampPrescData=0
+PcSampCYCTAP=1
+PcSampPOSTCNT=15
+PcSampIndex=0
+DataLogMode=0
+ITMportsEnable=0
+ITMportsTermIO=0
+ITMportsLogFile=0
+ITMlogFile=$PROJ_DIR$\ITM.log
+[CodeCoverage]
+Enabled=_ 0
+[watch_formats]
+Fmt0={W}42:Black_center	3	0
+Fmt1={W}42:DMA_Over_Flag	5	0
+Fmt2={W}42:Expect_Speed	0	5
+Fmt3={W}42:obstacleCenter	0	3
+Fmt4={W}42:temp	3	0
+[SWOTraceWindow]
+PcSampling=0
+InterruptLogs=0
+ForcedTimeStamps=0
+EventCPI=0
+EventEXC=0
+EventFOLD=0
+EventLSU=0
+EventSLEEP=0
+[PowerLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=0
+Title_0=I0
+Symbol_0=0 4 1
+LiveEnabled=0
+LiveFile=PowerLogLive.log
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[EventLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[PowerProbe]
+Frequency=10000
+Probe0=I0
+ProbeSetup0=2 1 1 2 0 0
+[DriverProfiling]
+Enabled=0
+Mode=3
+Graph=0
+Symbiont=0
+Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Bp0=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\摄像头 KL26 - 效果一般 - 副本}.128.7" 0 0 1 "" 0 "" 0
+Bp1=_ 0 "EMUL_CODE" "0x00001BFC" 0 0 1 "" 0 "" 0
+Bp2=_ 0 "EMUL_CODE" "0x00001C52" 0 0 1 "" 0 "" 0
+Bp3=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\限幅改舵机KP,KI按键每次加0.1，电机I4.2,P改为35，，1}.443.3" 0 0 1 "" 0 "" 0
+Count=4
+[Aliases]
+A0=_ "C:\Users\asus\Desktop\摄像头 KL26 - 副本\App\isr.c" ""
+A1=_ "C:\Users\asus\Desktop\摄像头 KL26 - 加直角\App\main.c" ""
+A2=_ "C:\Users\asus\Desktop\摄像头 KL26 - 加直角中间\App\LandzoOLED.c" ""
+A3=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\IAR\system_MKL.c" ""
+A4=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_PIT.c" ""
+A5=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_SysTick.c" ""
+A6=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_TPM.c" ""
+A7=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_dma.c" ""
+A8=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_lptmr.c" ""
+A9=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_port.c" ""
+A10=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\MKL_uart.c" ""
+A11=_ "C:\Users\asus\Desktop\摄像头 KL26\Chip\Src\misc.c" ""
+A12=_ "C:\Users\asus\Desktop\摄像头采集1 - 副本\App\LandzoPredator.c" ""
+A13=_ "C:\Users\asus\Desktop\摄像头采集1 - 副本\App\isr.c" ""
+A14=_ "C:\Users\asus\Desktop\摄像头采集1 - 副本\App\main.c" ""
+A15=_ "C:\Users\asus\Desktop\摄像头采集1 - 副本\Chip\Src\MKL_dma.c" ""
+A16=_ "C:\Users\asus\Desktop\摄像头采集\Chip\Src\IAR\startup_MKL.s" ""
+A17=_ "C:\Users\asus\Desktop\像素点软件 - 副本\App\main.c" ""
+A18=_ "C:\Users\asus\Desktop\像素点软件\App\MKL_conf.c" ""
+A19=_ "C:\Users\asus\Desktop\像素点软件\Chip\Src\IAR\system_MKL.c" ""
+A20=_ "C:\Users\asus\Desktop\像素点软件\Chip\Src\MKL_mcg.c" ""
+A21=_ "C:\Users\asus\Desktop\像素点软件\Chip\Src\misc.c" ""
+A22=_ "C:\Users\cww19950812\Desktop\A车_移植蓝宙的图像算法_但图像会跳，而且镜像\App\Key.c" ""
+A23=_ "C:\Users\cww19950812\Desktop\CWW_KL26#\App\isr.c" ""
+A24=_ "C:\Users\cww19950812\Desktop\编码器齿轮松了，\App\main.c" ""
+A25=_ "C:\Users\cww19950812\Desktop\看波形记录电机P，I  2\App\main.c" ""
+A26=_ "C:\Users\cww19950812\Desktop\前瞻22+十字新想法+15,95,2\App\main.c" ""
+A27=_ "C:\Users\cww19950812\Desktop\全白行计十字标志位\App\main.c" ""
+A28=_ "C:\Users\cww19950812\Desktop\速度提高，记录参数3\App\main.c" ""
+A29=_ "C:\Users\cww19950812\Desktop\修改电机PID指针参数传入\App\main.c" ""
+A30=_ "C:\Users\cww19950812\Desktop\修改斜率形参，加入三角形面积\App\main.c" ""
+A31=_ "C:\Users\cww19950812\Desktop\修改寻找基准行的小错误。修改发送波形的函数的位置1\App\main.c" ""
+A32=_ "C:\Users\cww19950812\Desktop\原始图像模糊，而且图像会隔一段时间就跳动\App\Key.c" ""
+A33=_ "C:\Users\cww19950812\Desktop\原始图像模糊，而且图像会隔一段时间就跳动\Chip\Src\misc.c" ""
+A34=_ "C:\Users\cww19950812\Desktop\障碍入门程序+第一次红外不检测+障碍与停车线误差处理，障碍右转不灵敏未处理+延时停车，启动要按两下5 ，2016.7.10\App\Speed_Ctrl.c" ""
+A35=_ "C:\Users\cww19950812\Desktop\左右基础P基本确定，P的增量左右可以考虑不同，速度2.3\App\main.c" ""
+A36=_ "F:\飞思卡尔\飞思卡尔智能车 摄像头组 资料\像素点软件\App\main.c" ""
+A37=_ "F:\飞思卡尔\我的（重要）\陈炜炜的程序调试日志\B车\2016.3.16\拔码发送图像，有中线\Chip\Src\MKL_dma.c" ""
+A38=_ "F:\飞思卡尔\我的（重要）\陈炜炜的程序调试日志\B车\2016.3.16\拔码发送图像，有中线\Chip\Src\MKL_gpio.c" ""
+A39=_ "F:\飞思卡尔\我的（重要）\陈炜炜的程序调试日志\B车\2016.3.16\拔码发送图像，有中线\Chip\Src\MKL_mcg.c" ""
+A40=_ "F:\飞思卡尔\我的（重要）\陈炜炜的程序调试日志\B车\2016.3.16\拔码发送图像，有中线\Chip\Src\MKL_port.c" ""
+A41=_ "F:\飞思卡尔\我的（重要）\陈炜炜的程序调试日志\B车\2016.3.16\拔码发送图像，有中线\Chip\Src\misc.c" ""
+Count=42
+SuppressDialog=1
